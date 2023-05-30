@@ -18,6 +18,7 @@ public class GetMethod03 extends HttpServlet{
 		response.setContentType("text/json");
 	    response.setCharacterEncoding("utf-8");
 	    // test code
+        //   test code 111111
 	    //request parameter 꺼내기
 	    String user_id = request.getParameter("user_id");
 	    String name = request.getParameter("name");
