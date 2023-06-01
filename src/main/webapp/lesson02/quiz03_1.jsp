@@ -9,7 +9,8 @@
 <body>
  <!--BMI =  몸무게 / ((키 / 100.0) * (키 / 100.0)); -->
  <%
- String status = null;
+  String status = null;
+ 
   int height = Integer.parseInt(request.getParameter("height"));
   int weight = Integer.parseInt(request.getParameter("weight"));
   
@@ -29,7 +30,9 @@
  
 <div>
     <h2> BMI 측정결과 </h2>
-	<h1> 당신은 <%=status%>  입니다</h1>
+    <div class = "d-flex"> 
+		<h1> 당신은  <span style="color:blue"> <%=status%> </span>입니다  </h1> 
+	</div>
 	<h4> BMI 수치 <%=bmi %> </h4>
 </div>
 
