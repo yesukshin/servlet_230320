@@ -13,34 +13,38 @@
 <title>장보기</title>
 </head>
 <body>
+	
+	
 	<div class="container">
-		<h2>장보기 목록</h2>
-	</div>
-	<%
-	List<String> goodsList = Arrays.asList(new String[] { "저지방 우유", "요플레 4개", "딸기 1팩", "삼겹살 300g", "생수 6개", "주방 세제" });
-
-	Iterator<String> iter = goodsList.iterator();
-	%>
-	<div class="container">
-	<table border=1 width="400">
+	<h2 class="text-center">장보기 목록</h2>
+	<table border=1 class="table text-center">
+	<thead>
+	
 		<tr>
-			<th style="text-align:center" width="50">번호</th>
-			<td style="text-align:center" width="350">품목</td>
+			<th>번호</th>
+			<td>품목</td>
 		</tr>
+    </thead>
+    <tbody>
+		<%
+		
+			List<String> goodsList = Arrays.asList(new String[] { "저지방 우유", "요플레 4개", "딸기 1팩", "삼겹살 300g", "생수 6개", "주방 세제" });
+
+			//Iterator<String> iter = goodsList.iterator();
+		
+			for (int i = 0; i < goodsList.size(); i++) {
+
+				String product = goodsList.get(i);
+		%>
+			<tr>
+				<th><%=i + 1%></th>
+				<td><%=product%></td>
+			</tr>
 
 		<%
-		for (int i = 0; i < goodsList.size(); i++) {
-
-			String product = goodsList.get(i);
+			}
 		%>
-		<tr>
-			<th style="text-align:center" width="50"><%=i + 1%></th>
-			<td style="text-align:center" width="350"><%=product%></td>
-		</tr>
-
-		<%
-		}
-		%>
+	</tbody>	
 	</table>
 	</div>
 </body>
