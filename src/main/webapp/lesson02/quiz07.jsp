@@ -4,14 +4,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-<title>책상세정보</title>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
 <body>
-  <%
+
+<%
 	List<Map<String, Object>> list = new ArrayList<>();
 	Map<String, Object> map = new HashMap<String, Object>() {
 	    { 
@@ -58,28 +59,36 @@
 	list.add(map);
 %>
 
-<%
-    int id = Integer.parseInt(request.getParameter("id"));
-    
+<div class="container">
+	<h1 class="text-center"> 책 목록</h1>
+	
+	<table class="table text-center">
+	<thead>
+		<tr class="row" >
+		    <th class="col-1">ID</th>
+			<th class="col-2">표지</th>
+			<th class="col-9">제목</th>
+		</tr>	
+	</thead>
+	
+	<tbody>
+	<%
 	for (Map<String,Object> item : list) {
-		if(id == (int)item.get("id")) {
-%>
-          <div class= container >
-          	<div class="d-flex">
-		  		<image src = <%=item.get("image")%> alt="표지" width="300">
-		  		<div>
-		  		    <h1><b><%=item.get("title")%></h1><br>
-		  		    <h2><span style= "color:blue"> <%=item.get("author")%></span></h2><br>
-		  		    <h3><span style= "color:grey"> <%=item.get("publisher")%></span></h3>
-		  		</div>
-		  	</div>
-		  </div>
-<%		  
-		}
+	%>
+			<tr class="row" >
+			   <td class="col-1" ><%= item.get("id") %> </td>  
+			   <td class="col-2">
+			   	  <img src=<%=item.get("image")%> alt="표지" width="50">
+			   </td>
+			   <td class="col-9">
+			      <a href="/lesson02/quiz07_1.jsp?id=<%=item.get("id")%>"><%=item.get("title")%></a>
+			   </td>
+			</tr>
+	<%
 	}
-	    
-%>
-		
-
+	%>
+	</tbody>
+</table>
+</div>	
 </body>
 </html>
