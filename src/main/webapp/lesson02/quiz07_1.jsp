@@ -60,22 +60,25 @@
 
 <%
     int id = Integer.parseInt(request.getParameter("id"));
-    
+    Map<String, Object> target = new HashMap<>();
 	for (Map<String,Object> item : list) {
-		if(id == (int)item.get("id")) {
-%>
+		if(id == (int)item.get("id")) {  //item.get("id") 오브젝트 이므로 int타입으로 캐스팅
+			target = item;		    
+%>		    
           <div class= container >
           	<div class="d-flex">
-		  		<image src = <%=item.get("image")%> alt="표지" width="300">
-		  		<div>
-		  		    <h1><b><%=item.get("title")%></h1><br>
-		  		    <h2><span style= "color:blue"> <%=item.get("author")%></span></h2><br>
-		  		    <h3><span style= "color:grey"> <%=item.get("publisher")%></span></h3>
+          	    <div>
+		  		<image src = <%=target.get("image")%> alt="표지" width="300">		  		
 		  		</div>
-		  	</div>
+		  		<div>
+		  		    <span class="display-1 font-weight-bold d-block"><%=target.get("title")%></span>
+		  		    <span class="display-3 text-info d-block"><%=target.get("author")%></span><br>
+		  		    <div class="display-4 text-secondary"><%=target.get("publisher")%></div>
+		  	    </div>
+		      </div>
 		  </div>
 <%		  
-		}
+         break; }
 	}
 	    
 %>
