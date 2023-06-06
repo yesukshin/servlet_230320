@@ -1,10 +1,11 @@
+<%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>채널 안내</title>
+<title>Insert title here</title>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
 	integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
@@ -17,52 +18,56 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
 	crossorigin="anonymous"></script>
-
 <style>
-a, a:hover {
-	color: #fff;
-}
-
 header {
-	height: 80px;
-}
-
-nav {
 	height: 50px;
 }
 
-.contents {
-	min-height: 500px;
+nav {
+	height: 100px;
+}
+
+li {
+	margin: 50px 0px;
+	margin-right: 20px;
+}
+
+,
+content1 {
+	margin: 50px 0px;
 }
 
 footer {
-	height: 30px;
+	height: 100px;
 }
 </style>
+
 </head>
 <body>
+	<!-- 헤더, 메뉴, 컨텐트1, 컨텐트2, 푸터 -->
 	<div id="wrap" class="container">
-		<header class="d-flex justify-content-center align-items-center">
+		<header class="d-flex justify-content-left align-items-center">
 			<jsp:include page="header.jsp" />
 		</header>
-		<nav class="bg-danger d-flex align-items-center">
+		<nav class="d-flex justify-content-left mt-10">
 			<jsp:include page="menu.jsp" />
 		</nav>
 		<%
-			String id = request.getParameter("id");
-			if (id == null) {
-				id = "전체";
-			}
+		String title = request.getParameter("title");
+		String jsp = "";
+		if (title == null) {
+			jsp = "content1.jsp";
+		} else {
+			jsp = "content2.jsp";
+		}
 		%>
-		<div><%=id%></div>
+		<!-- <div><%=title%></div> -->
 		<section class="contents">
-			<jsp:include page="content.jsp">
-				<jsp:param value="<%=id%>" name="id" />
-			</jsp:include>
+			<jsp:include page="<%=jsp%>" />
 		</section>
-		<footer class="d-flex justify-content-center align-items-center">
-			<jsp:include page="footer.jsp" />
-		</footer>
 	</div>
+	<footer class="d-flex justify-content-center align-items-center">
+		<jsp:include page="footer.jsp" />
+	</footer>
 </body>
 </html>
