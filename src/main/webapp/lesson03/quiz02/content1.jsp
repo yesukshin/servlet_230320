@@ -80,19 +80,20 @@ musicInfo.put("composer", "아이유,이종훈,이채규");
 musicInfo.put("lyricist", "아이유");
 musicList.add(musicInfo);
 %>
-<div id="content1" class="d-flex border border-success">
-	<div>
-		<img src="<%=artistInfo.get("photo")%>" alt="아이유" width="200px">
+<!-- 가수정보 -->
+<div class="border border-success d-flex mt-2 p-3 mb-3">
+	<div class= "mr-4">
+		<img src="<%=artistInfo.get("photo")%>" alt="아이유" width="150">
 	</div>
 	<div>
-		<div class="display-7 font-weight-bold"><%=artistInfo.get("name")%></div>
-		<div class="display-10 d-block"><%=artistInfo.get("agency")%></div>
-		<div class="display-10 d-block"><%=artistInfo.get("debute")%>데뷔
-		</div>
+		<h3 class="font-weight-bold"><%=artistInfo.get("name")%></h3>
+		<div><%=artistInfo.get("agency")%></div>
+		<div><%=artistInfo.get("debute")%> 데뷔</div>
 	</div>
 </div>
-<div id="content2">
-	<span class="display-8 mt-10"><strong>곡 목록 </span></strong>
+<!-- 곡목록 -->
+<div class="mt-3">
+	<span><strong>곡 목록 </span></strong>
 	<table class="table text-center">
 		<thead>
 			<tr>
@@ -108,8 +109,7 @@ musicList.add(musicInfo);
 			<tr>
 				<td><%=item.get("id")%></td>
 				<td class="text-primary"><a
-					href="/lesson03/quiz02/layout.jsp?title=<%=item.get("title")%>" class="nav-link"><%=item.get("title")%></a>
-				</td>
+					href="/lesson03/quiz02/layout.jsp?title=<%=item.get("title")%>"><%=item.get("title")%></a></td>
 				<td><%=item.get("album")%></td>
 			</tr>
 			<%

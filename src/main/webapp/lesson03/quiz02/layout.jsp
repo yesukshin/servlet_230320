@@ -40,11 +40,14 @@ content1 {
 footer {
 	height: 100px;
 }
+.music-info{color:#999; font-size:12px}
+
 </style>
 
 </head>
 <body>
 	<!-- 헤더, 메뉴, 컨텐트1, 컨텐트2, 푸터 -->
+	<!-- justify-content-left, align-items-center는 d-flex와 같이 써야한다 -->
 	<div id="wrap" class="container">
 		<header class="d-flex justify-content-left align-items-center">
 			<jsp:include page="header.jsp" />
@@ -54,20 +57,20 @@ footer {
 		</nav>
 		<%
 		String title = request.getParameter("title");
-		String jsp = "";
-		if (title == null) {
-			jsp = "content1.jsp";
+		String jspPage = "";
+		if (title == null ) {
+			jspPage = "content1.jsp";
 		} else {
-			jsp = "content2.jsp";
+			jspPage = "content2.jsp";
 		}
 		%>
 		<!-- <div><%=title%></div> -->
 		<section class="contents">
-			<jsp:include page="<%=jsp%>" />
+			<jsp:include page="<%=jspPage%>" />
 		</section>
-	</div>
-	<footer class="d-flex justify-content-center align-items-center">
+		<footer class="d-flex justify-content-left align-items-center">
 		<jsp:include page="footer.jsp" />
-	</footer>
+		</footer>
+	</div>
 </body>
 </html>

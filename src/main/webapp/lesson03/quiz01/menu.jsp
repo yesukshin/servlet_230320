@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <ul class="nav nav-fill w-100">
-
+    <!-- layout.jsp을 링크걸었지만 request사용할 수 있는 곳은 layout.jsp와 거기에서 호출하는 jsp모든 곳에서 가능하다 -->
 	<li class="nav-item"><a href="/lesson03/quiz01/layout.jsp?id=전체"
 		class="nav-link">전체</a></li>
 	<li class="nav-item"><a href="/lesson03/quiz01/layout.jsp?id=지상파"

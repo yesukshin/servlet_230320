@@ -77,6 +77,21 @@ musicList.add(musicInfo);
 
 
 <%
+// 상세정보를 보여줄 target 세팅
+Map<String, Object> target = new HashMap<>();
+// 1. 목록에서 클리한 경우 title 넘엉옴
+String id = request.getParameter("title");
+
+for (Map<String, Object> music : musicList) {
+	if (id.equals(music.get("title"))) {
+		target = music;
+		break;
+	}
+}
+%>
+
+
+<%
 //타이틀을 조건으로 조회
 String titleC = request.getParameter("title");
 String thumbnail = "";
@@ -88,7 +103,6 @@ String lyricist = "";
 String album = "";
 for (Map<String, Object> item : musicList) {
 	if (titleC.equals(item.get("title"))) {
-
 		thumbnail = String.valueOf(item.get("thumbnail"));
 		title = String.valueOf(item.get("title"));
 		singer = String.valueOf(item.get("singer"));
@@ -101,39 +115,49 @@ for (Map<String, Object> item : musicList) {
 	}
 }
 %>
-<% if (title.isEmpty()) { %>
-<div id="content1" class="d-flex border border-success">
-<h3>곡이 없습니다.</h3>
+<%
+if (title.isEmpty()) {
+%>
+<div id="content1" class="d-flex border border-success p-3">
+	<h3>곡이 없습니다.</h3>
 </div>
-<%} else { %>
-<div><strong>곡 정보</strong></div>
-<div id="content1" class="d-flex border border-success">
-
-	<div>
-		<img src="<%=thumbnail%>" alt="아이유" width="200px">
+<%
+} else {
+%>
+<div>
+	<strong>곡 정보</strong>
+</div>
+<div id="content1" class="d-flex border border-success p-3 mt-4 mb-3">
+	<div class="mr-4">
+		<img src="<%=thumbnail%>" alt="가수이미지" width="150px">
 	</div>
 	<div>
-		<div class="display-4">
-			<h3><%=title%></h3>
+		<div class="display-4"><h3><%=title%></h3></div>
+		<div class="font-weight-bold text-success"><%=singer%></div>
+		<div class="d-flex music-info">
+			<div>
+				<div>앨범</div>
+				<div>재생시간</div>
+				<div>작곡가</div>
+				<div>작사가</div>
+			</div>
+			<div class="ml-4">
+				<div><%=album%></div>
+				<div><%=Integer.parseInt(time)/60%> :<%=Integer.parseInt(time)%60 %></div>
+				<div><%=composer%></div>
+				<div><%=lyricist%></div>
+			</div>
 		</div>
-		<div class="display-12 text-info d-block"><%=singer%></div>
-		<div class="display-10 d-block mt-3">
-			앨범<%=album%></div>
-		<div class="display-10 d-block">
-			재생시간<%=time%></div>
-		<div class="display-10 d-block">
-			작곡가<%=composer%></div>
-		<div class="display-10 d-block">
-			작사가<%=lyricist%></div>
 	</div>
-
 </div>
-<%} %>
+<%
+}
+%>
 
-<div id="content2">
-	<span class="mt-10"><strong>가사</span></strong>
+<div id="content2" class="mt-3">
+	<span><strong>가사</strong></span>
 	<hr>
-	<span class="mt-10"><strong>가사정보없음</span></strong>
+	<span class="mt-5"><small>가사정보없음</small></span>
 	<hr>
 </div>
 
