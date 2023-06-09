@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.test.common.MySqlService;
+import com.test.common.MysqlService;
 
 @WebServlet("/lesson04/ex02_insert")
 public class Ex02Insert extends HttpServlet {
@@ -24,7 +24,7 @@ public class Ex02Insert extends HttpServlet {
 		String introduce = request.getParameter("introdude");
 
 		// DB연결
-		MySqlService ms = MySqlService.getInstance();
+		MysqlService ms = MysqlService.getInstance();
 		ms.connect();
 
 		//
