@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -20,53 +21,86 @@
 <style>
 header {
 	height: 80px;
+	background-color: #ff7f50;
+	color: #ffffff;
 }
 
 nav {
 	height: 50px;
+	background-color: #ff7f50;
+	color: #ffffff;
 }
 
-.bb {
-	margin: 20px;
-	padding: 20px;	
-	width: 330px;
-	height: 220px;
-	box-sizing: border-box;
-	
+.border {
+	border-color: #ff7f50;
+}
+
+.imageStyle:hover {
+	background-color: #ff7f50
 }
 </style>
-</head>
 
+<script>
+      //체크 함수 생성
+      function check() {
+       //myfrom 이름 설정
+        var myForm = document.myform;
+
+        //id가 공백이면
+        if (myForm.id.value == "") {
+            alert("id 입력해주십시오");
+            myForm.id.focus();
+		    return false;
+        }
+        
+        //title이 공백이면
+        if (myForm.title.value == "") {
+            alert("title 입력해주십시오");
+            myForm.title.focus();
+		    return false;
+        }
+       
+       //price이 공백이면
+        if (myForm.price.value == "") {
+            alert("price 입력해주십시오");
+            myForm.price.focus();
+		    return false;
+        }
+      }
+     
+</script>
+
+</head>
 <body>
+
 	<div id="wrap" class="container">
-		<header
-			class="d-flex justify-content-center align-items-center bg-warning">
-			<h2 class="font-weight-bold">HONG당무마켓</h2>
+		<header class="d-flex justify-content-center align-items-center">
+			<jsp:include page="header.jsp" />
 		</header>
 
-		<nav class="bg-red d-flex align-items-center bg-warning">
-			<ul class="nav nav-fill w-100">
-				<li class="nav-item">리스트</li>
-				<li class="nav-item">물건올리기</li>
-				<li class="nav-item">마이페이지</li>
-			</ul>
+		<nav class="d-flex align-items-center">
+			<jsp:include page="menu.jsp" />
 		</nav>
-
-		<section>
-			<div class="d-flex border-success">
-				<div class="bb border"></div>
-				<div class="bb border"></div>
-				<div class="bb border"></div>
-			</div>			
-			<div class="d-flex mt-1 border-success">
-				<div class="bb border"></div>
-				<div class="bb border"></div>
-				<div class="bb border"></div>
-			</div>
-
+		<%
+					
+			String gbn = request.getParameter("gbn");
+			String jspPage = "";
+			if (gbn == null ) {
+				jspPage = "content.jsp";
+			} else if (gbn.equals("list")){
+				jspPage = "content.jsp";
+			} else if (gbn.equals("input")){
+				jspPage = "content2.jsp";
+			}
+			
+		%>
+		<section class="contents cols-12">
+			<jsp:include page="<%=jspPage%>" />
 		</section>
 
-		<footer> </footer>
+		<footer class="d-flex justify-content-center align-items-center">
+			<jsp:include page="footer.jsp" />
+		</footer>
 	</div>
 </body>
 </html>
