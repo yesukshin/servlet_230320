@@ -56,7 +56,7 @@
 	    // 체크됨: true, 체크안되어잇으면:null
 	    String filter = request.getParameter("starPointerFilter");
 	    
-	    boolean exclude = !filter = null; 
+	    boolean exclude = filter != null; 
 	    
 	    for (Map<String,Object> item :list) {
 	       if(keyword.equals(item.get("menu"))) {
